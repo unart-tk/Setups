@@ -1,0 +1,14 @@
+sudo su
+apti mysql-server mysql-client
+apti php5 libapache2-mod-php5
+vim /var/www/info.php
+----
+<?php phpinfo(); ?>
+----
+
+Mysql support for php
+----
+apti php5-mysql
+
+Restart
+sudo /etc/init.d/apache2 restart

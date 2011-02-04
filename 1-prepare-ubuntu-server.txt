@@ -1,0 +1,68 @@
+Prepare a Ubuntu Server
+==========================
+
+    (c) 2011 Ben, untar.org
+    guides, sysadmin
+
+What are the very first steps after the login.
+
+***
+
+
+Index
+-----
+
+1. Change your admin password
+
+2. Create a user
+
+3. Check/set timezone
+
+
+
+1. Change your admin password
+-----------------------------
+
+Don't use a admin or root login for everyday work, so first give the administrator a long and secure password
+
+    passwd
+
+
+2. Create a user 
+
+Now lets create an administrative user and  him into 'wheel' group. It defines a set of users for administrative tasks.
+
+    sudo groupadd wheel
+
+then edit the sudoers file with:
+
+    sudo visudo 
+
+and add:
+
+    ## Group with admin rights
+    %wheel ALL=(ALL)   ALL
+
+Ok - finally - we create the user:
+
+    sudo useradd bob
+
+and put into 'wheel' group:
+
+    sudo usermod -a -G wheel group
+
+
+3. Check/set timezone
+
+The last time is to set the timezone correctly. There are services that depend on that (like ntp)
+
+Timezones are actually defined by the link '/etc/localtime' pointing in /usr/share/zoneinfo, like:
+    
+    ln -sf /usr/share/zoneinfo/US/Central /etc/localtime
+
+But there is an nice tool to manage that, so I use:
+
+    sudo dpkg-reconfigure tzdata
+
+
+
