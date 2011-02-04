@@ -1,0 +1,27 @@
+Cheatsheet for Setup SSH
+========================
+
+    (c) 2011 Ben, untar.org
+    in: cheatsheets, setups, ssh
+
+These are just the minimal steps, to get it running. 
+
+On the local machine
+--------------------
+
+### 1. Go to ~/.ssh
+
+    cd ~/.ssh
+    mkdir key_backup
+    mv * key_backup/
+
+
+### 2. Generate key
+
+    ssh-keygen -t rsa -C "bob@email.com"
+
+(Normally give a passphrase, at the moment you'll be asked )
+
+Since I use to make separate keys for different servers, you may have to add the key with 
+
+

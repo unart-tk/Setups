@@ -1,0 +1,113 @@
+Basic Network Settings in Ubuntu
+================================
+
+    (c) 2011 Ben, untar.org
+    in: guides, basics, networking
+
+This Guides shows how to setup the most basic networking related settings.
+
+***
+
+
+Index
+----
+
+1. Set Hostname
+
+2. Set static ip
+
+3. Set hosts file
+
+
+
+1. Set Hostname
+---------------
+
+The hostname is the computers name, check it with:
+
+    hostname
+
+Backup the existing:
+
+    sudo mv /etc/hostname{,.orig}
+
+Give the now name 'superiron':
+
+    echo 'superiron' | sudo tee /etc/hostname
+
+And finish
+
+    sudo hostname -F /etc/hostname
+
+
+2. Define a static ip
+---------------------
+
+If you get your ip address from DHCP, this is how you change it static.
+
+First, whats your current IP adress(es):
+
+    ifconfig | grep inet 
+
+So you can take one of those as static IP:
+
+    sudo vim /etc/network/interfaces
+
+If you're on DHCP, it looks like:
+
+    auto eth0
+    iface eth0 inet dhcp
+
+Change it to:
+
+    auto eth0
+    iface eth0 inet static
+            address 192.168.1.39
+            netmask 255.255.255.0
+            network 192.168.1.0
+            broadcast 192.168.1.255
+            gateway 192.168.1.1
+
+
+We take the simple route and make sure our DNS setting has the same address as the gateway (router):
+
+    vim /etc/resolv.conf
+
+    nameserver 192.168.1.1
+
+And restart:
+
+    sudo /etc/init.d/networking restart
+
+
+
+3. Internal hosts
+-----------------
+
+Lets define a few hosts in our internal network.
+
+    sudo vim /etc/hosts
+
+It can look like the following:
+
+    127.0.0.1	localhost.localdomain	localhost
+
+    127.0.0.1	mymachine.mylan.org mymachine
+    192.168.1.40 musicserver.mylan.org mysiserver
+
+With these entries we can resolve the ip 192.168.1.40 internally with going through a plublic network.
+
+4. Final tests
+--------------
+
+Can names be resolved
+
+    ping google.com
+
+What are the routes:
+
+    traceroute google.com
+
+Or even more interesting
+
+    mtr google.com
