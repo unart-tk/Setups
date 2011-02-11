@@ -1,0 +1,48 @@
+IRC Cheatsheet
+==============
+
+    (c) 2011 Ben, untar.org
+    in: cheatsheets, irc
+
+
+Setup
+----
+
+Setup a nick name protected by the NickServ service.
+
+### 1. Connect to a server
+
+    /connect irc.freenode.net
+
+### 2. Register a nick
+
+    /msg nickserv <nick> <password> <email>
+
+    /msg nickserv roadrunner supersecret123 roadrunner@mail.com
+
+### 3. Enforce login
+
+    /msg  nickserv set enforce on
+
+### 4. Various
+
+Group nick to account and hide email
+
+    /msg nickserv group
+    /msg nickserv set hidemail on
+
+
+Login
+-----
+
+### 1. Connect to a server
+
+    /connect irc.freenode.net
+
+### 2. Identify 
+
+    /msg nickserv identify <nick> <password>
+
+
+
+

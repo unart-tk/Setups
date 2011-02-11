@@ -79,6 +79,12 @@ And restart:
 
     sudo /etc/init.d/networking restart
 
+If there is an Error like
+
+    unable to resolve ....
+
+proceed to the next step
+
 
 
 3. Internal hosts
@@ -90,10 +96,22 @@ Lets define a few hosts in our internal network.
 
 It can look like the following:
 
-    127.0.0.1	localhost.localdomain	localhost
+    127.0.0.1	localhost.localdomain	localhost superiron
 
     127.0.0.1	mymachine.mylan.org mymachine
     192.168.1.40 musicserver.mylan.org mysiserver
+
+
+Important: make sure, the hostname is also part of the hostsfile and point to localhost
+
+    127.0.0.1	localhost.localdomain	localhost superiron
+
+
+And restart:
+
+    sudo /etc/init.d/networking restart
+
+If there is an Error like
 
 With these entries we can resolve the ip 192.168.1.40 internally with going through a plublic network.
 
